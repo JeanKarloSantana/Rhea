@@ -13,7 +13,7 @@ namespace Rhea.DAL.SQL
 {
     public class RheaDbContext : DbContext
     {
-        public RheaDbContext(DbContextOptions<DbContext> options) : base(options) 
+        public RheaDbContext(DbContextOptions<RheaDbContext> options) : base(options) 
         {
            
         }
@@ -26,11 +26,29 @@ namespace Rhea.DAL.SQL
             builder.ApplyConfiguration(new ReservationStatusConfiguration());
             builder.ApplyConfiguration(new FurnitureStatusConfiguration());
             builder.ApplyConfiguration(new EventTypeConfiguration());
+            builder.ApplyConfiguration(new EventStatusConfiguration());
+            builder.ApplyConfiguration(new UserStatusConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new PersonConfiguration());
+            builder.ApplyConfiguration(new CompanyConfiguration());
+            builder.ApplyConfiguration(new FurnitureDetailConfiguration());
+            builder.ApplyConfiguration(new ReservationConfiguration());
+            builder.ApplyConfiguration(new FurnitureConfiguration());
+            builder.ApplyConfiguration(new EventConfiguration());
         }
         
-        public DbSet<UserType> UserTypes => Set<UserType>();
-        public DbSet<ReservationStatus> ReservationStatuses => Set<ReservationStatus>();
-        public DbSet<FurnitureStatus> FurnitureStatuses => Set<FurnitureStatus>();
+        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<UserStatus> UserStatus { get; set; }
+        public DbSet<ReservationStatus> ReservationStatuses { get; set; }
+        public DbSet<FurnitureStatus> FurnitureStatuses { get; set; }
+        public DbSet<EventStatus> EventStatuses { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<Furniture> Furnitures { get; set;}
+        public DbSet<Event> Events { get; set; }
+        public DbSet<FurnitureDetail> FurnitureDetails { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

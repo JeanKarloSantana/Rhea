@@ -16,8 +16,6 @@ namespace Rhea.DAL.Configurations
             builder.ToTable("furniture_statuses");
 
             builder.HasKey(x => x.Id);
-
-            
         }
     }
 }

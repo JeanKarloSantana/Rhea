@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Rhea.Entities
 {
-    public class UserType : BaseEntity
+    public class UserType : BaseTypeEntity
     {
+        public ICollection<User> User { get; set; }
     }
 }

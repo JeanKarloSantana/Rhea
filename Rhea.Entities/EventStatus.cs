@@ -8,6 +8,6 @@ namespace Rhea.Entities
 {
     public class EventStatus : BaseTypeEntity
     {
-
+        public ICollection<Event> Event { get; set; }
     }
 }

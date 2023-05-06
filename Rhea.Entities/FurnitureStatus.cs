@@ -8,5 +8,6 @@ namespace Rhea.Entities
 {
     public class FurnitureStatus : BaseTypeEntity
     {
+        public ICollection<Furniture> Furniture { get; set; }
     }
 }

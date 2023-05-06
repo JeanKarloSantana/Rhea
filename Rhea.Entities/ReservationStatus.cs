@@ -8,5 +8,6 @@ namespace Rhea.Entities
 {
     public class ReservationStatus : BaseTypeEntity
     {
+        public ICollection<Reservation> Reservation { get; set; }
     }
 }
