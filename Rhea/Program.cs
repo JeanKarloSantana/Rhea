@@ -19,7 +19,9 @@ builder.Services.AddDbContext<RheaDbContext>(options =>
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IEventManager, EventManager>();
 builder.Services.AddTransient<IUserManager, UserManager>();
+builder.Services.AddTransient<IUserValidationService, UserValidationService>();
 builder.Services.AddTransient<IReservationValidationService, ReservationValidationService>();
+builder.Services.AddTransient<IFurnitureReservationValidationService, FurnitureReservationValidationService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

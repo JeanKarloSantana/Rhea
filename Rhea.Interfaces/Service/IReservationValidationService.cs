@@ -10,5 +10,6 @@ namespace Rhea.Interfaces.Service
     public interface IReservationValidationService
     {
         ValidationResponse ScheduleDateTimeValidation(DateTime starTime, DateTime endTime);
+        Task<ValidationResponse> ReservationOverlapValidation(DateTime starTime, DateTime endTime);
     }
 }

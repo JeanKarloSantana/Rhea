@@ -1,4 +1,5 @@
-﻿using Rhea.DAL.SQL;
+﻿using Microsoft.EntityFrameworkCore;
+using Rhea.DAL.SQL;
 using Rhea.Entities;
 using Rhea.Entities.DTO;
 using Rhea.Entities.Enums;
@@ -44,5 +45,7 @@ namespace Rhea.Persistance.Repository
             User user = Get(id);
             user.IdUserStatus = idStatus;
         }
+
+        public async Task<bool> IsUser(string email) => await context.Users.AnyAsync(x => x.Email == email);
     }
 }

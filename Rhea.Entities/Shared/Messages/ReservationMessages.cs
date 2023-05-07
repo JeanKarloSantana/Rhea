@@ -18,5 +18,6 @@ namespace Rhea.Entities.Shared.Messages
         public static readonly string EventEndAfterNine = "From monday to thursday, the event cannot end after 9:00 PM";
         public static readonly string EventStartBeforeThree = "From friday to saturday, the event cannot start before 3:00 pm";
         public static readonly string EventEndAfterEleven = "From friday to saturday, the event cannot end after 11:00 pm";
+        public static readonly string ScheduleOverlap = "Unable to make a reservation in the given date due a time overlap";
     }
 }

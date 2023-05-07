@@ -14,5 +14,6 @@ namespace Rhea.Interfaces.Repository
         int GetUserIdStatusByID(int id);
         void UpdateUserStatus(int id, int idStatus);
         int CreateUserByDto(PostUserDto userDto);
+        Task<bool> IsUser(string email);
     }
 }

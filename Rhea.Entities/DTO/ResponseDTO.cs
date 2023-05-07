@@ -18,5 +18,16 @@ namespace Rhea.Entities.DTO
         {
             Errors = new List<string>();
         }
+
+        public ResponseDTO<T> UpdateResponse(ResponseDTO<T> response, T data, ushort statusCode, bool succeed, string error, string message)
+        { 
+            response.Data = data;
+            response.Message = message;
+            response.StatusCode = statusCode;
+            response.Succeed = succeed;
+            response.Errors.Add(error);
+
+            return response;
+        }
     }
 }

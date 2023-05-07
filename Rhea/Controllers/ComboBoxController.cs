@@ -5,22 +5,21 @@ using Rhea.Interfaces.Domain;
 using Rhea.Interfaces.Generic;
 using System;
 using System.Reflection;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Rhea.Controllers
 {
-    public class ComboxController : Controller
+    public class ComboBoxController : Controller
     {
         private readonly IUserManager _userManager;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ComboxController(IUserManager eventManager, IUnitOfWork unitOfWork)
+        public ComboBoxController(IUserManager eventManager, IUnitOfWork unitOfWork)
         {
             _userManager = eventManager;
             _unitOfWork = unitOfWork;
         }
 
-        [HttpPost("FillDBCombox")]
+        [HttpPost("FillComboBoxTables")]
         public async Task<IActionResult> CreateEvent()
         {
             try
@@ -60,7 +59,7 @@ namespace Rhea.Controllers
                     _unitOfWork.UserType.Add(userType);
                 });
 
-                var EventList = new List<string> { "CONFERECE", "BIRTHDAY", "HOUSE PARTY", "COURSES", "CONVENTION" };
+                var EventList = new List<string> { "CONFERENCE", "BIRTHDAY", "HOUSE PARTY", "COURSES", "CONVENTION" };
                 EventList.ForEach(type =>
                 {
                     var eventType = new EventType { Name = type };

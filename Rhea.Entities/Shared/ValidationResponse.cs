@@ -12,14 +12,12 @@ namespace Rhea.Entities.Shared
         public string Message { get; set; }
         public bool IsValid { get; set; }
 
-        public void SetMessage(string message)
+        public ValidationResponse SetResponse(ValidationResponse reservationValidation, string message, bool isValid)
         {
-            Message = message;
-        }
+            reservationValidation.Message = message;
+            reservationValidation.IsValid = isValid;
 
-        public void SetIsValid(bool boolValue)
-        {
-            IsValid = boolValue;
+            return reservationValidation;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Rhea.Entities.DTO;
 using Rhea.Entities.Enums;
+using Rhea.Entities.Shared;
 using Rhea.Interfaces.Domain;
 using Rhea.Interfaces.Generic;
+using Rhea.Interfaces.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,44 +14,34 @@ namespace Rhea.Domain.UserManager
 {
     public class UserManager : IUserManager
     {
-
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserValidationService _userValidation;
         private ResponseDTO<string> response;
 
-        private void updateResponse(ushort statusCode, bool succeed, string error, string message)
-        {
-            response.Message = message;
-            response.StatusCode = statusCode;
-            response.Succeed = succeed;
-            response.Errors.Add(error);
-        }
-
-        public UserManager(IUnitOfWork unitOfWork)
+        public UserManager(IUnitOfWork unitOfWork, IUserValidationService userValidation)
         {
             _unitOfWork = unitOfWork;
+            _userValidation = userValidation;
             response = new ResponseDTO<string>();
         }
 
-        public Task<ResponseDTO<string>> CreateUser(PostUserDto userDto)
+        public async Task<ResponseDTO<string>> CreateUser(PostUserDto userDto)
         {
+            ValidationResponse userValidation = await _userValidation.ValidateUserCretion(userDto.Email);
+            if (!userValidation.IsValid)
+                return response.UpdateResponse(response, "", 400, false, userValidation.Message, ""); 
+
             int userId = _unitOfWork.User.CreateUserByDto(userDto);
 
             if (userDto.UserType == (int)UserTypeEnum.PERSON) 
             { 
                 _unitOfWork.Person.CreatePersonByDto(userId, userDto);
-                SucceedResponse();
-                return Task.FromResult(response);
+                return response.UpdateResponse(response, "", 200, true, userValidation.Message, "");
             }
 
             _unitOfWork.Company.CreateCompanyByDto(userId, userDto);
-
-            SucceedResponse();
-            return Task.FromResult(response);
-        }
-
-        public void SucceedResponse() 
-        {
-            updateResponse(200, true, "", "User Created");
+            
+            return response.UpdateResponse(response, "", 200, true, userValidation.Message, "");
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Rhea.Interfaces.Repository
 {
     public interface IFurnitureRepository : IBaseRepository<Furniture>
     {
+        int GetAmountOfAvailableFurniture(List<int> furnitureIds);
     }
 }
