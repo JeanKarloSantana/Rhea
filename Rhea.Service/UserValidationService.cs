@@ -30,10 +30,11 @@ namespace Rhea.Service
             if (userStatus != (int)UserStatusEnum.AVAILABLE) 
                 return userValidation.SetResponse(userValidation, UserMessages.NotAvailableStatus, false);
 
-            Person person = _unitOfWork.Person.GetPersonById(idUser);
+            //Person person = _unitOfWork.Person.GetPersonById(idUser)
+            var person = _unitOfWork.Person.GetAll();
             if (person != null) 
             {
-                if (CalculateAge(person.DateOfBirth) < 21) return userValidation.SetResponse(userValidation, UserMessages.UnderAge, false);
+                //if (CalculateAge(person.DateOfBirth) < 21) return userValidation.SetResponse(userValidation, UserMessages.UnderAge, false);
             }
 
             return userValidation.SetResponse(userValidation, UserMessages.ValidUser, true);
@@ -43,8 +44,8 @@ namespace Rhea.Service
         {
             var userValidation = new ValidationResponse();
             return await _unitOfWork.User.IsUser(email)
-                ? userValidation.SetResponse(userValidation, UserMessages.CanCreate ,true)
-                : userValidation.SetResponse(userValidation, UserMessages.UserExist, false);
+                ? userValidation.SetResponse(userValidation, UserMessages.UserExist, false)
+                : userValidation.SetResponse(userValidation, UserMessages.CanCreate, true);
         }
 
         private int CalculateAge(DateTime birthdate)

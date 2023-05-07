@@ -22,7 +22,7 @@ namespace Rhea.Service
         public ValidationResponse ValidateFurniture(List<int> furnitureIds)
         {
             var furnitureValidationResponse = new ValidationResponse();
-
+            
             if (furnitureIds.Count > 10)
                 return furnitureValidationResponse.SetResponse(furnitureValidationResponse, FurnitureReservationMessages.MoreThanTenFurniture, false);
 

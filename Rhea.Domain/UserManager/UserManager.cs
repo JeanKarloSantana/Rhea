@@ -1,6 +1,7 @@
 ﻿using Rhea.Entities.DTO;
 using Rhea.Entities.Enums;
 using Rhea.Entities.Shared;
+using Rhea.Entities.Shared.Messages;
 using Rhea.Interfaces.Domain;
 using Rhea.Interfaces.Generic;
 using Rhea.Interfaces.Service;
@@ -36,12 +37,12 @@ namespace Rhea.Domain.UserManager
             if (userDto.UserType == (int)UserTypeEnum.PERSON) 
             { 
                 _unitOfWork.Person.CreatePersonByDto(userId, userDto);
-                return response.UpdateResponse(response, "", 200, true, userValidation.Message, "");
+                return response.UpdateResponse(response, "", 200, true, "", UserMessages.UserCreated);
             }
 
             _unitOfWork.Company.CreateCompanyByDto(userId, userDto);
             
-            return response.UpdateResponse(response, "", 200, true, userValidation.Message, "");
+            return response.UpdateResponse(response, "", 200, true, "", UserMessages.UserCreated);
         }
     }
 }
