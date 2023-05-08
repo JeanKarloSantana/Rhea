@@ -20,36 +20,36 @@ namespace Rhea.Service
             var reservationValidation = new ValidationResponse();
 
             if (starTime.Hour > endTime.Hour)
-                return reservationValidation.SetResponse(reservationValidation, ReservationMessages.EndTimeGreaterThanStartTime, false);
+                return reservationValidation.SetResponse(ReservationMessages.EndTimeGreaterThanStartTime, false);
 
             if (starTime.Hour == endTime.Hour)
-                return reservationValidation.SetResponse(reservationValidation, ReservationMessages.LessThanOneHour, false);
+                return reservationValidation.SetResponse(ReservationMessages.LessThanOneHour, false);
 
             if (starTime.Date != endTime.Date)
-                return reservationValidation.SetResponse(reservationValidation, ReservationMessages.DifferentDates, false);
+                return reservationValidation.SetResponse(ReservationMessages.DifferentDates, false);
 
             if (starTime.DayOfWeek == DayOfWeek.Sunday)
-                return reservationValidation.SetResponse(reservationValidation, ReservationMessages.NoSundays, false);
+                return reservationValidation.SetResponse(ReservationMessages.NoSundays, false);
 
             if (starTime.DayOfWeek >= DayOfWeek.Monday && starTime.DayOfWeek <= DayOfWeek.Thursday)
             {
                 if (starTime.Hour < 7 || starTime.Hour == 7 && starTime.Minute < 30)
-                    return reservationValidation.SetResponse(reservationValidation, ReservationMessages.EventStartBeforeSeven, false);
+                    return reservationValidation.SetResponse(ReservationMessages.EventStartBeforeSeven, false);
 
                 if (endTime.Hour > 19 || endTime.Hour == 19 && endTime.Minute > 0)
-                    return reservationValidation.SetResponse(reservationValidation, ReservationMessages.EventEndAfterNine, false);
+                    return reservationValidation.SetResponse(ReservationMessages.EventEndAfterNine, false);
             }
 
             if (starTime.DayOfWeek >= DayOfWeek.Friday && starTime.DayOfWeek <= DayOfWeek.Saturday)
             {
                 if (starTime.Hour < 15 || starTime.Hour == 15 && starTime.Minute < 0)
-                    return reservationValidation.SetResponse(reservationValidation, ReservationMessages.EventStartBeforeThree, false);
+                    return reservationValidation.SetResponse(ReservationMessages.EventStartBeforeThree, false);
 
                 if (endTime.Hour > 23 || endTime.Hour == 23 && endTime.Minute > 0)
-                    return reservationValidation.SetResponse(reservationValidation, ReservationMessages.EventEndAfterEleven, false); ;
+                    return reservationValidation.SetResponse(ReservationMessages.EventEndAfterEleven, false); ;
             }
 
-            return reservationValidation.SetResponse(reservationValidation, ReservationMessages.ValidReservation, true);
+            return reservationValidation.SetResponse(ReservationMessages.ValidReservation, true);
         }
 
         public async Task<ValidationResponse> ReservationOverlapValidation(DateTime starTime, DateTime endTime)
@@ -69,8 +69,8 @@ namespace Rhea.Service
             }
            
             return isTimeOverlap 
-                ? timeOverlapValidation.SetResponse(timeOverlapValidation, ReservationMessages.ScheduleOverlap, false)
-                : timeOverlapValidation.SetResponse(timeOverlapValidation, ReservationMessages.ValidReservation, true);
+                ? timeOverlapValidation.SetResponse(ReservationMessages.ScheduleOverlap, false)
+                : timeOverlapValidation.SetResponse(ReservationMessages.ValidReservation, true);
         }
 
         public static bool TimeOverlapValidation(DateTime firstStartTime, DateTime firstEndTime, DateTime secondStartTime, DateTime secondEndTime)

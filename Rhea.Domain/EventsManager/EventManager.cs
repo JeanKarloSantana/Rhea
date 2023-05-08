@@ -36,22 +36,7 @@ namespace Rhea.Domain.ReservationManager
 
         public async Task<ResponseDTO<string>> CreateReservation(PostEventDto crtReservationDto)
         {
-            ValidationResponse validationResp = _userValidation.UserValidateScheduleReservation(crtReservationDto.IdUser);
-            if (!validationResp.IsValid)
-                return await Task.FromResult(response.UpdateResponse(response, "", 400, false, validationResp.Message, ""));
-
-            validationResp = _reservationValidation.ScheduleDateTimeValidation(crtReservationDto.StartTime, crtReservationDto.EndTime);
-            if (!validationResp.IsValid)
-                return await Task.FromResult(response = response.UpdateResponse(response, "", 400, false, validationResp.Message, ""));
-            
-            if(crtReservationDto.FurnitureIds != null) 
-            {
-                validationResp = _furnitureReservationValidation.ValidateFurniture(crtReservationDto.FurnitureIds);
-                if (!validationResp.IsValid)
-                    return await Task.FromResult(response.UpdateResponse(response, "", 400, false, validationResp.Message, ""));
-            }
-
-            validationResp = await _reservationValidation.ReservationOverlapValidation(crtReservationDto.StartTime, crtReservationDto.EndTime);
+            ValidationResponse validationResp = await EventReservationResponse(crtReservationDto.IdUser, crtReservationDto.StartTime, crtReservationDto.EndTime, crtReservationDto.FurnitureIds, "create");
             if (!validationResp.IsValid)
                 return await Task.FromResult(response.UpdateResponse(response, "", 400, false, validationResp.Message, ""));
 
@@ -70,19 +55,47 @@ namespace Rhea.Domain.ReservationManager
 
         public async Task<ResponseDTO<string>> UpdateReservationByDto(ReservationUpdateDTO reservationDto)
         {
+            ValidationResponse validationResp = await EventReservationResponse(reservationDto.IdUser, reservationDto.StartTime, reservationDto.EndTime, reservationDto.FurnitureIds, "update");
+            if (!validationResp.IsValid)
+                return await Task.FromResult(response.UpdateResponse(response, "", 400, false, validationResp.Message, ""));
+
             int idReservation = _unitOfWork.Reservation.GetReservationIdByUserId(reservationDto.IdUser);
-            
+
             _unitOfWork.Reservation.UpdateReservationByDto(idReservation, reservationDto);
 
             int idEvent = _unitOfWork.Reservation.GetReservationEventId(idReservation);
             
-           _unitOfWork.Event.UpdateEventByDTO(idEvent, reservationDto);
+            _unitOfWork.Event.UpdateEventByDTO(idEvent, reservationDto);
 
             response.UpdateResponse(response, "", 200, true, "", "reservation updated");
             
             _unitOfWork.Complete();
             
             return await Task.FromResult(response);
+        }
+
+        private async Task<ValidationResponse> EventReservationResponse(int idUser, DateTime evStartTime, DateTime evEndtime, List<int> furnitureIds, string action) 
+        {
+            ValidationResponse validationResp = _userValidation.UserValidateScheduleReservation(idUser);
+            if (!validationResp.IsValid && action != "update")
+                return validationResp;
+
+            validationResp = _reservationValidation.ScheduleDateTimeValidation(evStartTime, evEndtime);
+            if (!validationResp.IsValid)
+                return validationResp;
+
+            if (furnitureIds != null)
+            {
+                validationResp = _furnitureReservationValidation.ValidateFurniture(furnitureIds);
+                if (!validationResp.IsValid)
+                    return validationResp;
+            }
+
+            validationResp = await _reservationValidation.ReservationOverlapValidation(evStartTime, evEndtime);
+            if (!validationResp.IsValid)
+                return validationResp;
+
+            return validationResp.SetResponse("Valid", true);
         }
     }
 }

@@ -66,6 +66,41 @@ namespace Rhea.Controllers
                     _unitOfWork.EventType.Add(eventType);
                 });
 
+                var furnitureList = new List<string>
+                {
+                    "CONFERENCE CHAIR A1",
+                    "CONFERENCE CHAIR A2",
+                    "CONFERENCE CHAIR A3",
+                    "CONFERENCE CHAIR A4",
+                    "CONFERENCE CHAIR A5",
+                    "CONFERENCE CHAIR A6",
+                    "CONFERENCE TABLE A2",
+                    "CONFERENCE TABLE A3",
+                    "CONFERENCE TABLE A4",
+                    "CONFERENCE TABLE A5",
+                    "CONFERENCE TABLE A6",
+                    "BIRTHDAY CHAIR A1",
+                    "BIRTHDAY CHAIR A2",
+                    "BIRTHDAY CHAIR A3",
+                    "BIRTHDAY CHAIR A4",
+                    "BIRTHDAY CHAIR A5",
+                    "BIRTHDAY CHAIR A6",
+                    "BIRTHDAY TABLE A1",
+                    "BIRTHDAY TABLE A2",
+                    "BIRTHDAY TABLE A3",
+                    "BIRTHDAY TABLE A4",
+                    "BIRTHDAY TABLE A5",
+                    "BIRTHDAY TABLE A6",
+                };
+
+                foreach (var item in furnitureList)
+                {
+                    var furniture = new Furniture();
+                    furniture.Name = item;
+                    furniture.IdFurnitureStatus = 1;
+                    _unitOfWork.Furniture.Add(furniture);
+                }
+
                 _unitOfWork.Complete();
                 return StatusCode(200, "OK");
             }

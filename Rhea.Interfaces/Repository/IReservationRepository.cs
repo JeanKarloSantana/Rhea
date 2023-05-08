@@ -16,5 +16,6 @@ namespace Rhea.Interfaces.Repository
         void UpdateReservationByDto(int idReservation, ReservationUpdateDTO reservationDto);
         int GetReservationIdByUserId(int userId);
         int GetReservationEventId(int eventId);
+        IEnumerable<Reservation> GetReservationById(int id);
     }
 }

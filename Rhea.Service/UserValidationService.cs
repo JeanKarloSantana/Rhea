@@ -28,24 +28,24 @@ namespace Rhea.Service
             int userStatus = _unitOfWork.User.GetUserIdStatusByID(idUser);
             
             if (userStatus != (int)UserStatusEnum.AVAILABLE) 
-                return userValidation.SetResponse(userValidation, UserMessages.NotAvailableStatus, false);
+                return userValidation.SetResponse(UserMessages.NotAvailableStatus, false);
 
-            //Person person = _unitOfWork.Person.GetPersonById(idUser)
-            var person = _unitOfWork.Person.GetAll();
+            Person person = _unitOfWork.Person.GetPersonById(idUser);
+            
             if (person != null) 
             {
-                //if (CalculateAge(person.DateOfBirth) < 21) return userValidation.SetResponse(userValidation, UserMessages.UnderAge, false);
+                if (CalculateAge(person.DateOfBirth) < 21) return userValidation.SetResponse(UserMessages.UnderAge, false);
             }
 
-            return userValidation.SetResponse(userValidation, UserMessages.ValidUser, true);
+            return userValidation.SetResponse(UserMessages.ValidUser, true);
         }
 
         public async Task<ValidationResponse> ValidateUserCretion(string email)
         {
             var userValidation = new ValidationResponse();
             return await _unitOfWork.User.IsUser(email)
-                ? userValidation.SetResponse(userValidation, UserMessages.UserExist, false)
-                : userValidation.SetResponse(userValidation, UserMessages.CanCreate, true);
+                ? userValidation.SetResponse(UserMessages.UserExist, false)
+                : userValidation.SetResponse(UserMessages.CanCreate, true);
         }
 
         private int CalculateAge(DateTime birthdate)

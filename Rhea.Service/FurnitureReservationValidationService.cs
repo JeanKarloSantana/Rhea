@@ -24,13 +24,13 @@ namespace Rhea.Service
             var furnitureValidationResponse = new ValidationResponse();
             
             if (furnitureIds.Count > 10)
-                return furnitureValidationResponse.SetResponse(furnitureValidationResponse, FurnitureReservationMessages.MoreThanTenFurniture, false);
+                return furnitureValidationResponse.SetResponse(FurnitureReservationMessages.MoreThanTenFurniture, false);
 
             int furnitureCount = _unitOfWork.Furniture.GetAmountOfAvailableFurniture(furnitureIds);
             if (furnitureCount != furnitureIds.Count)
-                return furnitureValidationResponse.SetResponse(furnitureValidationResponse, FurnitureReservationMessages.FurnitureNotAvailable, false);
+                return furnitureValidationResponse.SetResponse(FurnitureReservationMessages.FurnitureNotAvailable, false);
             
-            return furnitureValidationResponse.SetResponse(furnitureValidationResponse, FurnitureReservationMessages.ValidFurnitureReservation, true);
+            return furnitureValidationResponse.SetResponse(FurnitureReservationMessages.ValidFurnitureReservation, true);
         }
     }
 }

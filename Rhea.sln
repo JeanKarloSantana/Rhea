@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rhea.Persistance", "Rhea.Pe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rhea.Domain", "Rhea.Domain\Rhea.Domain.csproj", "{7FBE101E-9C64-483B-966E-D64B61500441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhea.Service", "Rhea.Service\Rhea.Service.csproj", "{327C1509-24B3-4778-B298-D1B300CFFC1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rhea.Service", "Rhea.Service\Rhea.Service.csproj", "{327C1509-24B3-4778-B298-D1B300CFFC1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhea.NUnitTest", "Rhea.NUnitTest\Rhea.NUnitTest.csproj", "{9C92B862-2510-49AF-A65F-06B27E6AB1E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{327C1509-24B3-4778-B298-D1B300CFFC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{327C1509-24B3-4778-B298-D1B300CFFC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{327C1509-24B3-4778-B298-D1B300CFFC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C92B862-2510-49AF-A65F-06B27E6AB1E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C92B862-2510-49AF-A65F-06B27E6AB1E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C92B862-2510-49AF-A65F-06B27E6AB1E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C92B862-2510-49AF-A65F-06B27E6AB1E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

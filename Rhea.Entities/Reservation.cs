@@ -16,8 +16,11 @@ namespace Rhea.Entities
         public int IdEvent { get; set; }
         [Column("id_reservation_status")]
         public int IdReservationStatus { get; set; }
+        [Column("date_created")]
         public DateTime DateCreated { get; set; } = DateTime.Now;
+        [Column("start_time")]
         public DateTime StartTime { get; set; }
+        [Column("end_time")]
         public DateTime EndTime { get; set; }
         public User User { get; set; }
         public Event Event { get; set; }

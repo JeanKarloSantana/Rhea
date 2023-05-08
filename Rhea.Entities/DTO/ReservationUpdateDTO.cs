@@ -9,12 +9,12 @@ namespace Rhea.Entities.DTO
     public class ReservationUpdateDTO
     {
         public int IdUser { get; set; }
-        public int IdReservation { get; set; }
         public int IdReservationStatus { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int IdEventType { get; set; }
         public int IdEventStatus { get; set;}
         public string EventName { get; set; }
+        public List<int> FurnitureIds { get; set; }
     }
 }

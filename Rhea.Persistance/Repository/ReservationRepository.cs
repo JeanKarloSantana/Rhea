@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Rhea.DAL.Migrations;
 using Rhea.DAL.SQL;
 using Rhea.Entities;
 using Rhea.Entities.DTO;
@@ -10,6 +9,7 @@ using Rhea.Persistance.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,5 +63,10 @@ namespace Rhea.Persistance.Repository
             .Where(x => x.Id == eventId)
             .Select(x => x.IdEvent)
             .FirstOrDefault();
+
+        public IEnumerable<Reservation> GetReservationById(int id) 
+        {
+           return context.Reservations.Where(x => x.IdUser == id).ToList();
+        }
     }
 }
