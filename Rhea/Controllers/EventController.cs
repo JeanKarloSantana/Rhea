@@ -32,7 +32,7 @@ namespace Rhea.Controllers
         }
 
 
-        [HttpPost("UpdateEvent")]
+        [HttpPut("UpdateEvent")]
         public async Task<IActionResult> CreateEvent(ReservationUpdateDTO reservationDto)
         {
             try
@@ -46,7 +46,7 @@ namespace Rhea.Controllers
             }
         }
 
-        [HttpPost("GetReservation")]
+        [HttpGet("GetReservation")]
         public IActionResult GetEvent(int idUser)
         {
             try
