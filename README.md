@@ -38,3 +38,27 @@ Before starting to use the API, we need to fill the tables that hold the type an
 - Run the application, this will automatically open the Swagger
 - In the swagger, go to the ComboBox controller and expand the POST HTTP verb with the url "FillComboxTables"
 - Execute this endpoint and this will automatically fill the tables required to run the application
+
+## Create a User
+
+When creating an user, the user will be a Person, or a Company. Use the User Controller and expand the endpoint CreateUser.
+
+Create Person:
+- UserType = 1
+- Email = "test@outlook.com
+- FirstName "Alex"
+- LastName "Rodriguez"
+- DateOfBirth 5/5/1990
+
+Execute and this will create the user.
+
+Make a reservation
+
+Use the controller Event and the endpoint CreateEvent
+
+IdUser: {Your user id}
+IdEventType: The id of the type of the event
+Name: Nombre del evento
+Startime: Date and time of the start of the event 5/5/2023 8:00 AM
+Startime: Date and time of the end of the event 5/5/2023 11:00 AM
+FurnituresIds: The id of the furnitures that are being rented, this optional
