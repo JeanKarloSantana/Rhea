@@ -35,9 +35,9 @@ namespace Rhea.Persistance.Repository
             };
 
             Add(reservation);
-            
+
             context.SaveChanges();
-            
+
             return reservation;
         }
 
@@ -45,7 +45,7 @@ namespace Rhea.Persistance.Repository
             .Where(x => x.IdUser == userId)
             .Select(x => x.Id)
             .FirstOrDefault();
-        
+
 
         public void UpdateReservationByDto(int idReservation, ReservationUpdateDTO reservationDto)
         {
@@ -64,9 +64,33 @@ namespace Rhea.Persistance.Repository
             .Select(x => x.IdEvent)
             .FirstOrDefault();
 
-        public IEnumerable<Reservation> GetReservationById(int id) 
+        public IEnumerable<Reservation> GetReservationById(int id)
         {
-           return context.Reservations.Where(x => x.IdUser == id).ToList();
+            return context.Reservations.Where(x => x.IdUser == id).ToList();
         }
+
+        public GetEventDTO GetMyReservation(int idUser)
+        {
+            var EventDTO = context.Reservations
+                .Select(x => new
+                {
+                    x.IdUser,
+                    EventName = x.Event.Name,
+                    EventStart = x.StartTime,
+                    EventEnd = x.EndTime,
+                })
+                .FirstOrDefault(x => x.IdUser == idUser);
+
+            var @event = new GetEventDTO
+            {
+                EventName = "",
+                EventStart = DateTime.Now,
+                EventEnd = DateTime.Now,
+            };
+
+            return @event;
+        }
+
+        
     }
 }

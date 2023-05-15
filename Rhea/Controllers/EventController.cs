@@ -51,6 +51,7 @@ namespace Rhea.Controllers
         {
             try
             {
+                var ev = _unitOfWork.Reservation.GetMyReservation(idUser);
                 return StatusCode(200, _unitOfWork.Reservation.GetReservationById(idUser));
             }
             catch (Exception ex)
