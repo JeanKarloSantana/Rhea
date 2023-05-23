@@ -91,7 +91,10 @@ namespace Rhea.Controllers
                     "BIRTHDAY TABLE A4",
                     "BIRTHDAY TABLE A5",
                     "BIRTHDAY TABLE A6",
-                    "PROJECTOR A1"
+                    "PROJECTOR A1",
+                    "PROJECTOR A2",
+                    "PROJECTOR A3",
+                    "PROJECTOR A4"
                 };
 
                 foreach (var item in furnitureList)
