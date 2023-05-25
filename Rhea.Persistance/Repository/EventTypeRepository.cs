@@ -18,5 +18,7 @@ namespace Rhea.Persistance.Repository
         public EventTypeRepository(RheaDbContext dbContext) : base(dbContext)
         {
         }
+
+        
     }
 }

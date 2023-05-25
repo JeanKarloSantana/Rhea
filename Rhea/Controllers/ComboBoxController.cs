@@ -19,6 +19,19 @@ namespace Rhea.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [HttpGet("EventStatuses")]
+        public async Task<IActionResult> GetEventStatusesComboBoxAsync()
+        {
+            try
+            {
+                return await _unitOfWork.EventStatus.GetEventStatusComboBox();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+
         [HttpPost("FillComboBoxTables")]
         public async Task<IActionResult> CreateEvent()
         {

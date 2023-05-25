@@ -1,4 +1,5 @@
 ﻿using Rhea.Entities;
+using Rhea.Entities.DTO;
 using Rhea.Interfaces.Generic;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Rhea.Interfaces.Repository
 {
     public interface IEventStatusRepository : IBaseRepository<EventStatus>
     {
+        Task<List<ComboBox>> GetEventStatusComboBox();
     }
 }
