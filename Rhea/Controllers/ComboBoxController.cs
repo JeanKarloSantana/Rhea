@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rhea.Entities;
+using Rhea.Entities.ComboBox;
 using Rhea.Entities.DTO;
 using Rhea.Interfaces.Domain;
 using Rhea.Interfaces.Generic;
@@ -24,7 +25,7 @@ namespace Rhea.Controllers
         {
             try
             {
-                return await _unitOfWork.EventStatus.GetEventStatusComboBox();
+                return StatusCode(200, await _unitOfWork.EventStatus.GetEventStatusComboBox());
             }
             catch (Exception ex)
             {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Configuration;
-using Rhea.Entities;
+using Rhea.Entities.ComboBox;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;

@@ -1,5 +1,4 @@
-﻿using Rhea.Entities;
-using Rhea.Entities.DTO;
+﻿using Rhea.Entities.ComboBox;
 using Rhea.Interfaces.Generic;
 using System;
 using System.Collections.Generic;

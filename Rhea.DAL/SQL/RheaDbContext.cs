@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rhea.DAL.Configurations;
 using Rhea.Entities;
+using Rhea.Entities.ComboBox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rhea.DAL.SQL;
-using Rhea.Entities;
-using Rhea.Entities.DTO;
+using Rhea.Entities.ComboBox;
 using Rhea.Interfaces.Repository;
 using Rhea.Persistance.Generic;
 using System;

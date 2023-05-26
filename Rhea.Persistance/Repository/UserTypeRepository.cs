@@ -1,5 +1,6 @@
-﻿using Rhea.DAL.SQL;
-using Rhea.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Rhea.DAL.SQL;
+using Rhea.Entities.ComboBox;
 using Rhea.Interfaces.Repository;
 using Rhea.Persistance.Generic;
 using System;
@@ -17,5 +18,11 @@ namespace Rhea.Persistance.Repository
         public UserTypeRepository(RheaDbContext dbContext) : base(dbContext)
         {
         }
+
+        public async Task<List<ComboBox>> GetEventStatusComboBox() => await context.UserTypes.Select(x => new ComboBox
+        {
+            Id = x.Id,
+            Name = x.Name,
+        }).ToListAsync();
     }
 }

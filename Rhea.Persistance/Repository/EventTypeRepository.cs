@@ -1,5 +1,6 @@
-﻿using Rhea.DAL.SQL;
-using Rhea.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Rhea.DAL.SQL;
+using Rhea.Entities.ComboBox;
 using Rhea.Interfaces.Generic;
 using Rhea.Interfaces.Repository;
 using Rhea.Persistance.Generic;
@@ -19,6 +20,11 @@ namespace Rhea.Persistance.Repository
         {
         }
 
-        
+        public async Task<List<ComboBox>> GetEventStatusComboBox() => await context.EventTypes.Select(x => new ComboBox
+        {
+            Id = x.Id,
+            Name = x.Name,
+        }).ToListAsync();
+
     }
 }

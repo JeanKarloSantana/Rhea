@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rhea.Entities
+namespace Rhea.Entities.ComboBox
 {
-    public class FurnitureStatus : BaseTypeEntity
+    public class UserType : BaseTypeEntity
     {
-        public ICollection<Furniture> Furniture { get; set; }
+        public ICollection<User> User { get; set; }
     }
 }
