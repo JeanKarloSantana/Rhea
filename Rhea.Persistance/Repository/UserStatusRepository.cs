@@ -20,9 +20,9 @@ namespace Rhea.Persistance.Repository
         }
 
         public async Task<List<ComboBox>> GetEventStatusComboBox() => await context.UserStatus.Select(x => new ComboBox
-        {
-            Id = x.Id,
-            Name = x.Name,
-        }).ToListAsync();
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToListAsync();
     }
 }
