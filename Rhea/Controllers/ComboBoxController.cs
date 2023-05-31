@@ -108,7 +108,8 @@ namespace Rhea.Controllers
                     "PROJECTOR A1",
                     "PROJECTOR A2",
                     "PROJECTOR A3",
-                    "PROJECTOR A4"
+                    "PROJECTOR A4",
+                    "PROJECTOR A5",
                 };
 
                 foreach (var item in furnitureList)
